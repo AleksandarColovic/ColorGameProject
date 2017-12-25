@@ -58,10 +58,12 @@ function resetG(broj){
 	console.log("First console log: " + difficulty);  // <======================================= first console log
 	if(broj === 1 && difficulty == 3){
 		for(i = 3; i < 6; i++){
+			console.log("I'm in the first loop! Yaaaay!");
 			squares[i].style.display = "none";
 		}
 	}else{
 		for(i = 3; i < 6; i++){
+			console.log("I'm in the second loop! Fuuuuuck!");
 			squares[i].style.display = "inline-block";
 		}
 	}
