@@ -55,7 +55,7 @@ function resetG(broj){
 	message.textContent = "";
 	h1.style.backgroundColor = "steelblue";
 	
-	console.log("diff is: " + difficulty);
+	console.log("First console log: " + difficulty);  // <======================================= first console log
 	if(broj === 1 && difficulty == 3){
 		for(i = 3; i < 6; i++){
 			squares[i].style.display = "none";
@@ -70,7 +70,7 @@ function resetG(broj){
 	pickedColor = pickColor();
 	colorDisplay.textContent = pickedColor.toUpperCase();
 	for(i = 0; i < squares.length; i++){
-		console.log(difficulty);
+		console.log("second console log: " + difficulty);             // <====================================== second console log
 		squares[i].style.backgroundColor = colors[i];
 		squares[i].addEventListener("click", function(){
 			var clickedColor = this.style.backgroundColor;
