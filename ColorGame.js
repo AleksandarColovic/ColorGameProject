@@ -10,7 +10,7 @@ var hard = document.querySelector("#hard");
 
 //LOCAL VARS
 
-var difficulty = 6;
+var difficulty;
 var colors = arrGen(difficulty);
 var pickedColor = pickColor();
 var b = false;
