@@ -26,10 +26,11 @@ function rgbGenerator(){
 	return "rgb(" + randomizer() + ", " + randomizer() + ", " + randomizer() + ")";
 }
 
-// generates an array of rgb colors with the size defined by broj
-function arrGen(broj){
+// generates an array of rgb colors with the size defined by 
+
+function arrGen(num){
 	var arr = [];
-	for (i = 0; i < broj; i++){
+	for (i = 0; i < num; i++){
 		arr.push(rgbGenerator());
 	}
 	return arr;
@@ -50,13 +51,13 @@ function changeColors(color){
 	}
 }
 
-function resetG(broj){
+function resetG(){
 	reset.textContent = "New Colors";
 	message.textContent = "";
 	h1.style.backgroundColor = "steelblue";
 	
 	console.log("First console log: " + difficulty);  // <======================================= first console log
-	if(broj === 1 && difficulty == 3){
+	if(difficulty == 3){
 		for(i = 3; i < 6; i++){
 			console.log("I'm in the first loop! Yaaaay!");
 			squares[i].style.display = "none";
@@ -92,24 +93,24 @@ function resetG(broj){
 
 //EXECUTION
 
-resetG(0);
+resetG();
 hard.classList.add("selected");
 
 
 reset.addEventListener("click", function(){
-	resetG(0);
+	resetG();
 });
 
 easy.addEventListener("click", function(){
 	difficulty = 3;
-	resetG(1);
+	resetG();
 	hard.classList.remove("selected");
 	easy.classList.add("selected");
 });
 
 hard.addEventListener("click", function(){
 	difficulty = 6;
-	resetG(0);
+	resetG();
 	easy.classList.remove("selected");
 	hard.classList.add("selected");
 });
