@@ -70,6 +70,7 @@ function resetG(broj){
 	pickedColor = pickColor();
 	colorDisplay.textContent = pickedColor.toUpperCase();
 	for(i = 0; i < squares.length; i++){
+		console.log(difficulty);
 		squares[i].style.backgroundColor = colors[i];
 		squares[i].addEventListener("click", function(){
 			var clickedColor = this.style.backgroundColor;
