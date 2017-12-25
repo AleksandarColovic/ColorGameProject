@@ -97,7 +97,6 @@ hard.classList.add("selected");
 
 
 reset.addEventListener("click", function(){
-	console.log(difficulty);
 	resetG(0);
 });
 
