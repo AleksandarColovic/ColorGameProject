@@ -54,7 +54,8 @@ function resetG(broj){
 	reset.textContent = "New Colors";
 	message.textContent = "";
 	h1.style.backgroundColor = "steelblue";
-
+	
+	console.log("diff is: " + difficulty);
 	if(broj === 1 && difficulty == 3){
 		for(i = 3; i < 6; i++){
 			squares[i].style.display = "none";
