@@ -55,7 +55,7 @@ function resetG(broj){
 	message.textContent = "";
 	h1.style.backgroundColor = "steelblue";
 
-	if(broj == 1){
+	if(broj === 1 && difficulty == 3){
 		for(i = 3; i < 6; i++){
 			squares[i].style.display = "none";
 		}
