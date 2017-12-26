@@ -52,16 +52,17 @@ function displaySwitching(diff){
 	if(diff === 3){
 		for(i = 3; i < 6; i++){
 			squares[i].style.display = "none";
-			return;
 		}
-		if(diff === 6){
-			for(i = 3; i < 6; i++){
-				squares[i].style.display = "inline-block";
-				return;
-			}
-		}
-		console.log("DISPLAY SWITCHING FAILED!!!");
+		return;
 	}
+	if(diff === 6){
+		for(i = 3; i < 6; i++){
+			squares[i].style.display = "block";
+		}
+		return;
+	}
+	console.log("DISPLAY SWITCHING FAILED!!!");
+}
 
 // first colors all squares with random colors, then handles the clicking after 
 function clickedColor(){
@@ -102,21 +103,20 @@ function resetGame(){
 resetGame();
 hard.classList.add("selected");
 
-
-reset.addEventListener("click", function(){
+reset.addEventListener( "click", function(){
 	resetGame();
 });
 
-easy.addEventListener("click", function(){
+easy.addEventListener( "click", function(){
 	difficulty = 3;
 	resetGame();
 	hard.classList.remove("selected");
-	easy.classList.add("selected");
+	easy.classList.remove("selected");
 });
 
 hard.addEventListener("click", function(){
 	difficulty = 6;
 	resetGame();
 	easy.classList.remove("selected");
-	hard.classList.add("selected");
+	hard.classList.remove("selected");
 });
