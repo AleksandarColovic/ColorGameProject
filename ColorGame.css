@@ -1,73 +1,122 @@
-body {
-	background-color: #232323;
-	margin: 0;
-	font-family: "Montserrat", "Avenir";
+//QUERY SELECTORS
+
+var squares = document.querySelectorAll(".square");
+var colorDisplay = document.querySelector("#colorDisplay")
+var message = document.querySelector("#message");
+var h1 = document.querySelector("h1");
+var reset = document.querySelector("#reset");
+var easy = document.querySelector("#easy");
+var hard = document.querySelector("#hard");
+
+//LOCAL VARS
+
+var difficulty = 6;
+var colors = arrGen(difficulty);
+var pickedColor = pickColor();
+var b = false;
+
+// FUNCTIONS
+
+// generates a random number between 0 and 255
+function randomizer(){
+	return Math.floor(Math.random() * 256);
+}
+// generates an output in a form of "rgb(x, y, z)"
+function rgbGenerator(){
+	return "rgb(" + randomizer() + ", " + randomizer() + ", " + randomizer() + ")";
 }
 
-.square {
-	width: 30%;
-	padding-bottom: 30%;
-	float: left;
-	margin: 1.66%;
-	border-radius: 15%;
-	transition: background 0.6s;
-	-webkit-transition: background 0.6s;
-	-moz-transition: background 0.6s;
+// generates an array of rgb colors with the length defined by diff
+function arrGen(diff){
+	var arr = [];
+	for (i = 0; i < diff; i++){
+		arr.push(rgbGenerator());
+	}
+	return arr;
 }
 
-#container {
-	margin: 20px auto;
-	max-width: 600px;
+// randomly picks one color from the array of colors mentioned above
+function pickColor(){
+	return colors[(Math.floor(Math.random() * difficulty))]
 }
 
-h1 {
-	text-align: center;
-	line-height: 1.1;
-	font-weight: normal;
-	color: white;
-	background: steelblue;
-	margin: 0;
-	text-transform: uppercase;
-	padding: 20px 0;
+// changes the color of all squares into one color
+function changeColors(color){
+	for(i = 0; i < 6; i++){
+		squares[i].style.backgroundColor = color;
+	}
 }
 
-#colorDisplay {
-	font-size: 200%;
+// switches the amount of displayed squares depending on the diff
+function displaySwitching(diff){
+	if(diff === 3){
+		for(i = 3; i < 6; i++){
+			squares[i].style.display = "none";
+		}
+		return;
+	}
+	if(diff === 6){
+		for(i = 3; i < 6; i++){
+			squares[i].style.display = "block";
+		}
+		return;
+	}
+	console.log("DISPLAY SWITCHING FAILED!!!");
 }
 
-#message {
-	display: inline-block;
-	width: 20%;
+// first colors all squares with random colors, then handles the clicking after 
+function clickedColor(){
+	for(i = 0; i < squares.length; i++){
+		squares[i].style.backgroundColor = colors[i];
+		squares[i].addEventListener("click", 
+			function(){
+				var clickedColor = this.style.backgroundColor;
+				if(clickedColor === pickedColor){
+					message.textContent = "Correct!";
+					changeColors(clickedColor);
+					h1.style.backgroundColor = clickedColor;
+					reset.textContent = "Try Again?";
+				}else{
+					this.style.backgroundColor = "#232323";
+					message.textContent = "Try Again.";
+				}
+
+			});
+	}
 }
 
-#buttonDiv {
-	background: white;
-	height: 30px;
-	text-align: center;
-	color: black;
+// resets the squares
+function resetGame(){
+	reset.textContent = "New Colors";
+	message.textContent = "";
+	h1.style.backgroundColor = "steelblue";
+	displaySwitching(difficulty);
+	colors = arrGen(difficulty);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor.toUpperCase();
+	clickedColor();
 }
 
-.selected {
-	color: white;
-	background: steelblue;
-}
 
-button {
-	border: none;
-	background: none;
-	text-transform: uppercase;
-	height: 100%;
-	font-weight: 700;
-	color: steelblue;
-	letter-spacing: 1px;
-	font-size: inherit;
-	transition: all 0.3s;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	outline: none;
-}
+// EXECUTION AND LISTENERS
 
-button:hover {
-	color: white;
-	background: steelblue;
-}
+resetGame();
+hard.classList.add("selected");
+
+reset.addEventListener( "click", function(){
+	resetGame();
+});
+
+easy.addEventListener( "click", function(){
+	difficulty = 3;
+	resetGame();
+	hard.classList.remove("selected");
+	easy.classList.remove("selected");
+});
+
+hard.addEventListener("click", function(){
+	difficulty = 6;
+	resetGame();
+	easy.classList.remove("selected");
+	hard.classList.remove("selected");
+});
