@@ -1,2 +1,2 @@
-# ColorGameProject
-<a href="https://aleksandarcolovic.github.io/ColorGameProject/">Open the site</a>
+# <a href="https://aleksandarcolovic.github.io/ColorGameProject/">Open the webpage</a>
+
